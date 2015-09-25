@@ -1,0 +1,33 @@
+{
+  "name": "law_blog",
+  "version": "1.0.0",
+  "description": "law blog",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.14.0",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "bcrypt-nodejs": "^0.0.3",
+    "mongoose": "^4.1.8",
+    "express-ejs-layouts": "^1.1.0",
+    "morgan": "^1.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "TEST"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:JulieHeidt/law_blog.git"
+  },
+  "keywords": [
+    "law",
+    "blog"
+  ],
+  "author": "Julie Heidt, Adam Flaxman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JulieHeidt/law_blog/issues"
+  },
+  "homepage": "https://github.com/JulieHeidt/law_blog#readme"
+}
