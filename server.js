@@ -9,15 +9,13 @@ var express = require( "express" ),
     router = express.Router,
     port = 8080;
 
-
 app.use( bodyParser.urlencoded( { extended: true } ) );
-app.use( bodyParser.json );
+app.use( bodyParser.json() );
+app.set( "views", path.join( __dirname, "app/views" ) );
 app.use( expressLayouts );
-app.use( express.static( __dirname + "assets" ) );
-app.set( "views", path.join( __dirname, "views" ) );
-app.set( "view engine", "ejs" );
-app.engine( "ejs", require( "ejs" ).renderFile );
-
+app.engine( "ejs", require( "ejs" ).renderFile);
+app.set( "view engine", "ejs");
+app.use( express.static( __dirname + "/assets") );
 
 app.listen( port );
 
