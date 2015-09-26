@@ -3,7 +3,7 @@ var express = require('express'),
     commentsController = require( "../comments/commentsController.js" ),
     Comment = require(  "../models/comment.js" );
 
-commentRouter.param('comment_id', commentsController.commentById);
+commentRouter.params('comment_id', commentsController.commentById);
 
 // RESTful routes:
 commentRouter.route('/comments')
