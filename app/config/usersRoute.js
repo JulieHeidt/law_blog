@@ -4,8 +4,17 @@ var express = require( "express" ),
 
 
 // login
+userRouter.use( function ( req, res, next ) {
+  console.log( "logged on" )
+  next();
+});
+
 userRouter.route( "/" )
-  .get( usersController.login );
+  .post( usersController.create )
+
+userRouter.route( "/login" )
+  .get( usersController.login )
+
 
 
 
