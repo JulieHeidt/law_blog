@@ -10,7 +10,7 @@ var UserSchema = new mongoose.Schema({
   lastName: { type:String, required: true },
   email: { type:String, required: true, index: { unique: true } },
   password: { type: String, required: true, select: false }
-})
+});
 
 UserSchema.pre( 'save', function( next ){
   var user = this;
