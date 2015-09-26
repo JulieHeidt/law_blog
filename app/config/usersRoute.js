@@ -1,6 +1,7 @@
 var express = require( "express" ),
     userRouter = express.Router(),
-    usersController = require( "../controllers/usersController.js" );
+    usersController = require( "../controllers/usersController.js" ),
+    User = require(  "../models/user.js" );
 
 
 // login
@@ -9,11 +10,11 @@ userRouter.use( function ( req, res, next ) {
   next();
 });
 
-userRouter.route( "/" )
-  .post( usersController.create )
+userRouter.route( "/new" )
+  .post( usersController.create );
 
 userRouter.route( "/login" )
-  .get( usersController.login )
+  .get( usersController.login );
 
 
 

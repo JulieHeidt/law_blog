@@ -2,9 +2,6 @@ var User = require( "../models/user.js" );
 
 
 function login ( req, res ) {
-  // if ( err ) {
-  //   console.log( err );
-  // }
   res.render( "./users/login.ejs" );
 };
 
@@ -13,11 +10,11 @@ function create ( req, res ) {
   user.firstName = req.body.firstName
   user.lastName = req.body.lastName
   user.email = req.body.email
-  user.password = rq.body.password
-
+  user.password = req.body.password
   user.save( function ( err ) {
+    console.log( err )
     if ( err ) {
-      res.json( { message: "Error " + err } )
+      res.send( err );
     }
     res.json( { message: user.firstName + " Created" } )
   });
