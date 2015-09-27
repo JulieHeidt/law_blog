@@ -9,7 +9,7 @@ var express = require( "express" ),
     router = express.Router,
     userRouter = require( "./app/config/usersRoute.js" ),
     DB = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/law_blog',
-  	port = process.env.PORT || 8080;
+  	port = process.env.PORT || 3000;
 
 mongoose.connect( DB );
 
@@ -20,6 +20,6 @@ app.use( expressLayouts );
 app.engine( "ejs", require( "ejs" ).renderFile);
 app.set( "view engine", "ejs");
 app.use( express.static( __dirname + "/app/assets") );
-app.use( "/users", userRouter );
+app.use( "/api", userRouter );
 
 app.listen( port );
