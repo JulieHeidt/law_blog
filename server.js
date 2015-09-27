@@ -20,6 +20,6 @@ app.use( expressLayouts );
 app.engine( "ejs", require( "ejs" ).renderFile);
 app.set( "view engine", "ejs");
 app.use( express.static( __dirname + "/app/assets") );
-app.use( "/api", userRouter );
+app.use( userRouter );
 
 app.listen( port );

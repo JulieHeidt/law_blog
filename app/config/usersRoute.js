@@ -9,14 +9,12 @@ userRouter.use( function ( req, res, next ) {
   next();
 });
 
-userRouter.route( "/users/new" )
-  .post( usersController.create );
-
 userRouter.route( "/users/login" )
   .get( usersController.login );
 
 userRouter.route( "/users" )
-  .get( usersController.index );
+  .get( usersController.index )
+  .post( usersController.create );
 
 userRouter.route( "/users/:user_id" )
   .get( usersController.show )
