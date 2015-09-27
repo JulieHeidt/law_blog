@@ -11,11 +11,12 @@ function blogById( req, res, next, id) {
 };
 
 function create( req, res ) {
-	var blog = new Blog();
-	blog.title = req.body.title
-	blog.author = req.body.author
-	blog.content = req.body.content
+	var blog = new Blog( req.body );
+	// blog.title = req.body.title
+	// blog.author = req.body.author
+	// blog.content = req.body.content
 	blog.save( function (err) {
+		console.log( err )
 		if (err) {
 			res.send( err );
 		}
@@ -34,7 +35,7 @@ function index ( req, res ) {
 };
 
 function show( req, res ) {
-	res.json( req.blog );
+	res.json( req.bdoy );
 };
 
 function update( req, res ) {
