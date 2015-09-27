@@ -3,10 +3,10 @@ var mongoose = require( 'mongoose' ),
 	Schema = mongoose.Schema;
 
 var BlogSchema = new mongoose.Schema( {
-	title: { String, required: true }
+	title: { type:String, required: true },
 	author: String,
 	created_at: Date,
-	content: { String, required: true }
+	content: { type:String, required: true }
 });
 
 BlogSchema.pre('save', function(next) {

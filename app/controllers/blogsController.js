@@ -22,11 +22,12 @@ function create( req, res ) {
 
 function index ( req, res ) {
 	Blog.find(function( err, blogs ) {
-    if ( err ) console.log('Could not find blog because:', error)
+    if ( err ) {
+    	console.log('Could not find blog because:' + error) 
     	res.send( err );
     } 
     res.json( { message: "here are the blogs!"} )
-  	});
+  	})
 }
 
 function show( req, res ) {
@@ -43,7 +44,7 @@ function update( req, res ) {
 	})
 }
 
-function delete( req, res ) {
+function destroy ( req, res ) {
 	blog.remove( { _id: req.params.blog_id }, function( err ) {
 	if ( err ) {
 		console.log ("Unable to delete blog")
