@@ -9,12 +9,12 @@ commentRouter.use( function ( req, res, next ) {
 });
 
 // RESTful routes:
-commentRouter.route('/:blog_id/comments')
+commentRouter.route('/blogs/:blog_id/comments')
   .post(commentsController.create)
   .get(commentsController.index);
 
 //
-commentRouter.route('/:blog_id/comments/:comment_id')
+commentRouter.route('/blogs/:blog_id/comments/:comment_id')
   .get(commentsController.show)
   .patch(commentsController.update)
   .delete(commentsController.destroy);
