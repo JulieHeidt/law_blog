@@ -1,16 +1,16 @@
 var mongoose = require( "mongoose" );
 
-User = {
+User = [
   {
-    user.firstName: "Adam",
-    user.lastName: "Flaxman",
-    user.email: "adamflaxmanart@gmail.com",
-    user.password: "pass"
+    firstName: "Adam",
+    lastName: "Flaxman",
+    email: "adamflaxmanart@gmail.com",
+    password: "pass"
   },
   {
-    user.firstName: "Julie",
-    user.lastName: "Heidt",
-    user.email: "julie.a.heidt@gmail.com",
-    user.password: "pass"
+    firstName: "Julie",
+    lastName: "Heidt",
+    email: "julie.a.heidt@gmail.com",
+    password: "pass"
   }
-}
+]

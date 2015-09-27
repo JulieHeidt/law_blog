@@ -1,7 +1,7 @@
 var express = require('express'),
-	commentRouter = express.Router(),
-    commentsController = require( "../controllers/commentsController.js" ),
-    Comment = require( "../models/comment.js" );
+		commentRouter = express.Router(),
+	  commentsController = require( "../controllers/commentsController.js" ),
+		blogsRoute = require( "./blogsRoute.js" );
 
 commentRouter.use( function ( req, res, next ) {
   console.log( "This is a comment Route" )
@@ -9,12 +9,12 @@ commentRouter.use( function ( req, res, next ) {
 });
 
 // RESTful routes:
-commentRouter.route('/comments')
+commentRouter.route('/:blog_id/comments')
   .post(commentsController.create)
   .get(commentsController.index);
 
 //
-commentRouter.route('/comments/:comment_id')
+commentRouter.route('/:blog_id/comments/:comment_id')
   .get(commentsController.show)
   .patch(commentsController.update)
   .delete(commentsController.destroy);
