@@ -63,20 +63,22 @@ function show( req, res ) {
 }
 
 function update( req, res ) {
-	// var blog = req.blog,
-	blog.save(function( err ) {
-	if ( err ) {
-		console.log( "Could not update blog because ", err);
-	}
-	res.json( { message: "blog updated!" } );
-	});
-};
+	Blog.findById( req.params.blog_id, function ( err, blog ) {
+    if ( err ) { res.send( err ); }
+    if ( req.body.title ) { blog.title = req.body.title; }
+    if ( req.body.author ) { blog.author = req.body.author; }
+    if ( req.body.content ) { blog.content = req.body.content; }
+    blog.save( function () {
+      if ( err ) { res.send( err ); }
+    });
+    res.json( { message: blog.id + " has been updated" } );
+  });
+}
+
 
 function destroy ( req, res ) {
 	blog.remove( { _id: req.params.blog_id }, function( err ) {
-	if ( err ) {
-		console.log ("Unable to delete blog")
-	}
+    if ( err ) { res.send( err ); }
 	res.json( { message: "blog deleted!" } )
 	});
 };
