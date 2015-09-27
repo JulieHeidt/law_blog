@@ -3,7 +3,10 @@ var express = require('express'),
     blogsController = require( "../controllers/blogsController.js" ),
     Blog = require(  "../models/blog.js" );
 
-// blogRouter.params('blog_id', blogsController.blogById);
+blogRouter.use( function ( req, res, next ) {
+  console.log( "This is a blog route" )
+  next();
+});
 
 // RESTful routes:
 blogRouter.route('/blogs')
