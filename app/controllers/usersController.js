@@ -23,7 +23,7 @@ function create ( req, res ) {
     if ( err ) {
       res.send( err );
     }
-    res.json( { message: user.firstName + " Created" } )
+    res.json( { message: user.firstName + user.lastName + " Created" } )
   });
 };
 

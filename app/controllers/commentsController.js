@@ -2,16 +2,18 @@ var Comment = require('../models/comment');
 
 function commentById(request, response, next, id) {
     Comment.findById(id, function(error, comment) {
-    if (err) 
+    if (err)
         console.log ('could not update comment')
 
     request.comment = comment;
     next();
     });
 }
-//Create function, new comment post 
+//Create function, new comment post
 function create(req, res) {
-    var blog = new Comment(request.body);
+    var comment = new Comment();
+    comment.name = req.body.comment
+    comment.content = req.body.content
     comment.save(function(err) {
         res.json({message: 'Comment was successfully created'})
     });
@@ -21,7 +23,7 @@ function index(req, res) {
     Comment.find(function(err, comments) {
         if(err) {
             console.log('Could not index comments!')
-            res.json(comments);    
+            res.json(comments);
         }
     })
 }

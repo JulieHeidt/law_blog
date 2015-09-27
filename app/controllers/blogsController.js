@@ -11,34 +11,43 @@ function blogById( req, res, next, id) {
 };
 
 function create( req, res ) {
-	var blog = new Blog(req.body);
+	var blog = new Blog();
+	blog.title = req.body.title
+	blog.author = req.body.author
+	blog.content = req.body.content
 	blog.save( function (err) {
 		if (err) {
 			res.send( err );
 		}
-		res.json( { message: "blog created with id of" + blog.id })
+		res.json( { message: "blog created with id of " + blog.id })
 	})
 }
 
 function index ( req, res ) {
-	Blog.find(function( err, blogs ) {
+	Blog.find( function( err, blogs ) {
     if ( err ) {
-    	console.log('Could not find blog because:' + error) 
+    	console.log('Could not find blog because:' + err )
     	res.send( err );
-    } 
-    res.json( { message: "here are the blogs!"} )
+    }
+    res.json( blogs )
   	})
 }
 
 function show( req, res ) {
-	res.json( req.blog );
+	Blog.findById( req.params.blog_id, function( err, blog ) {
+    if ( err ) {
+    	console.log('Could not find blog because:' + err)
+    	res.send( err );
+    }
+    res.json( blog )
+  	})
 }
 
 function update( req, res ) {
 	// var blog = req.blog,
 	blog.save(function( err ) {
 	if ( err ) {
-		console.log( "Could not update blog because ", error);
+		console.log( "Could not update blog because ", err);
 	}
 	res.json( { message: "blog updated!" } );
 	})
@@ -61,5 +70,3 @@ module.exports = {
   update: update,
   destroy: destroy
 };
-
-
