@@ -29,13 +29,11 @@ function create( req, res ) {
 		res.json( { message: "blog created with id of " + blog.id })
 	});
 };
-	})
-}
 
 function index ( req, res ) {
 	Blog.find( function( err, blogs ) {
     if ( err ) {
-    	console.log('Could not find blog because: ' + error) 
+    	console.log('Could not find blog because: ' + err) 
     	res.send( err );
     } 
     res.json( { message: "here are the blogs!"} )
@@ -43,23 +41,12 @@ function index ( req, res ) {
 };
 
 function show( req, res ) {
-	res.json( req.bdoy );
-};
-    	console.log('Could not find blog because:' + err )
-    	res.send( err );
-    }
-    res.json( blogs )
-  	})
-}
-
-function show( req, res ) {
-	Blog.findById( req.params.blog_id, function( err, blog ) {
+  Blog.findById( req.params.blog_id, function ( err , blog ) {
     if ( err ) {
-    	console.log('Could not find blog because:' + err)
-    	res.send( err );
+      res.send( err );
     }
-    res.json( blog )
-  	})
+    res.json( blog );
+  });
 }
 
 function update( req, res ) {
