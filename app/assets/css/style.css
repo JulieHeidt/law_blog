@@ -1,5 +1,8 @@
 /*General*/
 
+ul {
+  list-style: none;
+}
 
 /*Nav*/
 
@@ -20,4 +23,11 @@
 }
 .nav>.homeIcon>a {
   padding: 9px;
+}
+
+/*users index*/
+
+.ulInline li {
+  display: inline-block;
+  padding: 0 30px;
 }

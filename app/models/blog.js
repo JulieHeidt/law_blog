@@ -1,15 +1,13 @@
 //Blog Model
 var mongoose = require( 'mongoose' ),
-		Schema = mongoose.Schema,
-		CommentSchema = require( "./comment.js" ),
-		Comment = mongoose.model( "Comment" );
+		Schema = mongoose.Schema;
 
 var BlogSchema = new mongoose.Schema( {
 	title: { type:String, required: true },
 	author: String,
 	content: { type:String, required: true },
 	created_at: { type: Date, default: Date.now },
-	comment: [ Comment.schema ]
+	comment: []
 });
 
 BlogSchema.pre('save', function(next) {
