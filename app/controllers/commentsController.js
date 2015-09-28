@@ -1,25 +1,25 @@
-var Comment = require('../models/comment');
-
-//Create function, new comment post
-function create(req, res) {
-    var comment = new Comment();
-    comment.name = req.body.name
-    comment.content = req.body.content
-
-    comment.save(function(err) {
-        res.json( { message: 'Comment Created ID: ' + comment.id } )
-    });
-}
+var Comment = require('../models/comment.js');
 
 function index(req, res) {
     Comment.find(function(err, comments) {
         if(err) {
-            console.log('Could not index comments!')
-            res.json( err );
+            console.log('Error: ' + err );
+            res.send( err );
         }
         res.json(comments);
     })
 }
+
+function create( req, res ) {
+    var comment = new Comment();
+    comment.name = req.body.name
+    comment.content = req.body.content
+    comment.save( function( err ) {
+        console.log( err );
+    });
+    res.json( comment );
+}
+
 function show( req, res ) {
   Comment.findById( req.params.comment_id, function( err, comment ) {
     if ( err ) {
@@ -30,7 +30,6 @@ function show( req, res ) {
 }
 
 function update( req, res ) {
-  var data = request.body; //not sure about this line?
   var comment = request.comment
   Comment.findById( req.params.comment_id, function ( err, comment ) {
     if ( err ) { res.send( err ); }
@@ -39,20 +38,17 @@ function update( req, res ) {
     comment.save( function () {
       if ( err ) { res.send( err ); }
     });
-    res.json( { message: comment.id + " has been updated" } );
+    res.json( comment );
     });
-  }
-
-  // Object.keys(data).forEachcomment(function(key) {
-  //   comment.set(key, data[key]);
-  // });
+}
 
 function destroy( req, res ) {
   Comment.remove({ _id: request.params.comment_id }, function(err) {
     if ( err ) { res.send( err ); }
-    res.json({message: 'comment successfully deleted'});
+    res.json( { message: 'comment successfully deleted' } );
   });
 }
+
 
 module.exports = {
   create: create,
