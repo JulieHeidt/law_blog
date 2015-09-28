@@ -1,15 +1,5 @@
 var Blog = require('../models/blog');
 
-function blogById( req, res, next, id) {
-	Blog.findById( req.params.blog_id, function() {
-		if ( err ) {
-			res.json( err )
-		}
-		res.json ( Blog )
-		next();
-	});
-};
-
 function create( req, res ) {
 
 	var blog = new Blog( req.body );
@@ -33,9 +23,9 @@ function create( req, res ) {
 function index ( req, res ) {
 	Blog.find( function( err, blogs ) {
     if ( err ) {
-    	console.log('Could not find blog because: ' + err) 
+    	console.log('Could not find blog because: ' + err)
     	res.send( err );
-    } 
+    }
     res.json( { message: "here are the blogs!"} )
   	});
 };
@@ -71,7 +61,6 @@ function destroy ( req, res ) {
 };
 
 module.exports = {
-  blogById: blogById,
   create: create,
   index: index,
   show: show,

@@ -1,14 +1,5 @@
 var Comment = require('../models/comment');
 
-function commentById(request, response, next, id) {
-    Comment.findById(id, function(error, comment) {
-    if (err)
-        console.log ('could not update comment')
-
-    request.comment = comment;
-    next();
-    });
-}
 //Create function, new comment post
 function create(req, res) {
     var comment = new Comment();
@@ -38,7 +29,7 @@ function show( req, res ) {
   });
 }
 
-function update(req, res) {
+function update( req, res ) {
   var data = request.body; //not sure about this line?
   var comment = request.comment
   Comment.findById( req.params.comment_id, function ( err, comment ) {
@@ -56,7 +47,7 @@ function update(req, res) {
   //   comment.set(key, data[key]);
   // });
 
-function destroy(req, res) {
+function destroy( req, res ) {
   Comment.remove({ _id: request.params.comment_id }, function(err) {
     if ( err ) { res.send( err ); }
     res.json({message: 'comment successfully deleted'});
@@ -64,7 +55,6 @@ function destroy(req, res) {
 }
 
 module.exports = {
-  blogById: commentById,
   create: create,
   index: index,
   show: show,
