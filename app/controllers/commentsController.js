@@ -43,7 +43,7 @@ function update( req, res ) {
 }
 
 function destroy( req, res ) {
-  Comment.remove({ _id: request.params.comment_id }, function(err) {
+  Comment.remove({ _id: req.params.comment_id }, function(err) {
     if ( err ) { res.send( err ); }
     res.json( { message: 'comment successfully deleted' } );
   });

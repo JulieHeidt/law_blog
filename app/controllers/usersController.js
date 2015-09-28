@@ -1,12 +1,15 @@
-var User = require( "../models/user.js" );
+var User = require( "../models/user.js" ),
+    ejs = require( "ejs" );
 
 function index ( req, res ) {
+  var user = User;
   User.find( function( err, users ) {
-		if( err ) {
+    if( err ) {
       res.send( err );
     }
-		res.json( users );
-	})
+    res.render( "users/index.ejs", { users: users } );
+    // res.json( users )
+  });
 };
 
 function login ( req, res ) {
@@ -28,11 +31,11 @@ function create ( req, res ) {
 };
 
 function show ( req, res ) {
-  User.findById( req.params.user_id, function ( err , user ) {
+  User.findById( req.params.user_id, function ( err, user ) {
     if ( err ) {
       res.send( err );
     }
-    res.json( user );
+    res.render( "users/show.ejs", { user: user } );
   });
 }
 

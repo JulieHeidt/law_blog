@@ -1,7 +1,7 @@
 //Blog Model
 var mongoose = require( 'mongoose' ),
 		Schema = mongoose.Schema,
-		commentSchema = require( "./comment.js" ),
+		CommentSchema = require( "./comment.js" ),
 		Comment = mongoose.model( "Comment" );
 
 var BlogSchema = new mongoose.Schema( {
