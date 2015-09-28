@@ -1,33 +1,25 @@
-var Comment = require('../models/comment');
-
-function commentById(request, response, next, id) {
-    Comment.findById(id, function(error, comment) {
-    if (err)
-        console.log ('could not update comment')
-
-    request.comment = comment;
-    next();
-    });
-}
-//Create function, new comment post
-function create(req, res) {
-    var comment = new Comment();
-    comment.name = req.body.name
-    comment.content = req.body.content
-    comment.save(function(err) {
-        res.json( { message: 'Comment Created ID: ' + comment.id } )
-    });
-}
+var Comment = require( '../models/comment.js' );
 
 function index(req, res) {
     Comment.find(function(err, comments) {
         if(err) {
-            console.log('Could not index comments!')
-            res.json( err );
+            console.log('Error: ' + err );
+            res.send( err );
         }
         res.json(comments);
     })
 }
+
+function create( req, res ) {
+    var comment = new Comment();
+    comment.name = req.body.name
+    comment.content = req.body.content
+    comment.save( function( err ) {
+        console.log( err );
+    });
+    res.json( comment );
+}
+
 function show( req, res ) {
   Comment.findById( req.params.comment_id, function( err, comment ) {
     if ( err ) {
@@ -38,13 +30,9 @@ function show( req, res ) {
 }
 
 function update(req, res) {
-  var data = request.body; //not sure about this line?
-  var comment = request.comment
-
-  Object.keys(data).forEachcomment(function(key) {
-    comment.set(key, data[key]);
-  });
-
+  var data = request.body,
+      comment = request.comment;
+      
   comment.save(function(err) {
     if (err) console.error('Could not update comment b/c:', err);
     response.json({message: 'comment successfully updated'});
@@ -52,15 +40,24 @@ function update(req, res) {
 }
 
 function destroy(req, res) {
-  Comment.remove({ _id: request.params.article_id }, function(err) {
-    if (err) console.log('Could not delete article b/c:', err);
+  Comment.remove({ _id: request.params.comment_id }, function(err) {
+    if (err) { res.send( err ) };
 
-    res.json({message: 'Article successfully deleted'});
+    res.json( { message: 'Article successfully deleted' } );
   })
 }
 
+function comById ( req, res, next, id ) {
+  Blog.findById( id ).populate( 'comment' ).exec( function( err, blog ) {
+        if ( err ) return next( err );
+        if ( ! blog ) return next(new Error( 'Failed to load Blog ' + id ));
+        req.blog = blog;
+        next();
+    });
+};
+
 module.exports = {
-  blogById: commentById,
+  comById: comById,
   create: create,
   index: index,
   show: show,

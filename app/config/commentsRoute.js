@@ -10,8 +10,9 @@ commentRouter.use( function ( req, res, next ) {
 
 // RESTful routes:
 commentRouter.route('/blogs/:blog_id/comments')
-  .post(commentsController.create)
-  .get(commentsController.index);
+	.get(commentsController.index)
+	.post(commentsController.create);
+
 
 //
 commentRouter.route('/blogs/:blog_id/comments/:comment_id')
