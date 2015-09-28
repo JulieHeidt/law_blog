@@ -1,0 +1,33 @@
+/*General*/
+
+ul {
+  list-style: none;
+}
+
+/*Nav*/
+
+.navbar {
+  background: #194822;
+}
+.navbar-brand {
+  background: url( ../images/logo.png ) top center no-repeat;
+  background-size: cover;
+  height: 50px;
+  width: 100px;
+}
+.navbar a {
+  color: #fff;
+}
+.navBlocker {
+  height: 100px;
+}
+.nav>.homeIcon>a {
+  padding: 9px;
+}
+
+/*users index*/
+
+.ulInline li {
+  display: inline-block;
+  padding: 0 30px;
+}
